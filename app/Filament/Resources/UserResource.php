@@ -25,50 +25,51 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-
                 //
                 Forms\Components\TextInput::make('name')
-                ->required()->maxLength(255),
+                    ->required()
+                    ->maxLength(255),
 
                 Forms\Components\TextInput::make('email')
-                ->required() ->email(),
+                    ->required()
+                    ->email(),
 
                 Forms\Components\TextInput::make('password')
-                ->minLength(8),
+                    ->minLength(8),
 
             ]);
-            
     }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->columns([
-        Tables\Columns\TextColumn::make('id') ->label("رقم"),
-        Tables\Columns\TextColumn::make('name') ->searchable()->label("الأسم"),
-        Tables\Columns\TextColumn::make('email')->label("الإيميل"),
+            ->columns([
+                Tables\Columns\TextColumn::make('id')
+                    ->label("رقم"),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->label("الأسم"),
+                Tables\Columns\TextColumn::make('email')
+                    ->label("الإيميل"),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
 
-        
-        ])
-         ->filters([
-         //
-         ])
-         ->actions([
-         Tables\Actions\EditAction::make(),
-         Tables\Actions\DeleteAction::make(),
-
-         ])
-         ->bulkActions([
-         Tables\Actions\BulkActionGroup::make([
-         Tables\Actions\DeleteBulkAction::make(),
-         ]),
-         ]);
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public static function getPages(): array
