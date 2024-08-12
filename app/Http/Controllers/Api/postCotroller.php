@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\post;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class postCotroller extends Controller
+class PostCotroller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return Post::all();
     }
 
     /**
